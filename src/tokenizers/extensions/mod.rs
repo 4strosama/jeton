@@ -1,2 +1,6 @@
-pub mod token;
-pub mod vocab;
+mod token;
+mod vocab;
+
+// Re-exports
+pub use token::*;
+pub use vocab::*;

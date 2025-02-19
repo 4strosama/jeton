@@ -86,22 +86,24 @@ impl Serialize for VocabExtension {
     where
         S: serde::Serializer,
     {
-        let mut token_extension_id =
-            self.added_tokens_map_r
-                .iter()
-                .map(|(id, token)| TokenExtensionID {
-                    id: *id,
-                    token: token.clone(),
-                })
-                .collect::<Vec<_>>();
+        let mut token_extension_id = self
+            .added_tokens_map_r
+            .iter()
+            .map(|(id, token)| TokenExtensionID {
+                id: *id,
+                token: token.clone(),
+            })
+            .collect::<Vec<_>>();
 
-            token_extension_id.sort_by_key(|token| token.id);
+        token_extension_id.sort_by_key(|token| token.id);
 
-            let mut vocab = serializer.serialize_seq(Some(token_extension_id.len())).unwrap();
-            for token in token_extension_id {
-                vocab.serialize_element(&token).unwrap();
-            }
+        let mut vocab = serializer
+            .serialize_seq(Some(token_extension_id.len()))
+            .unwrap();
+        for token in token_extension_id {
+            vocab.serialize_element(&token).unwrap();
+        }
 
-            vocab.end()
+        vocab.end()
     }
 }
