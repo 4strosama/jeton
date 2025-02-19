@@ -31,7 +31,7 @@ where
             pre_tokenizer: None,
             post_processor: None,
             decoder: None,
-            vocab_extension: VocabExtension::new()
+            vocab_extension: VocabExtension::new(),
         }
     }
 }

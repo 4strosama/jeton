@@ -44,7 +44,7 @@ where
             pre_tokenizer: self.pre_tokenizer,
             post_processor: self.post_processor,
             decoder: self.decoder,
-            vocab_extension: self.vocab_extension
+            vocab_extension: self.vocab_extension,
         })
     }
 }

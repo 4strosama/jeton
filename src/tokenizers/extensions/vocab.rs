@@ -100,6 +100,7 @@ impl Serialize for VocabExtension {
         let mut vocab = serializer
             .serialize_seq(Some(token_extension_id.len()))
             .unwrap();
+
         for token in token_extension_id {
             vocab.serialize_element(&token).unwrap();
         }

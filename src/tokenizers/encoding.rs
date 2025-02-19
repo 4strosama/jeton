@@ -28,7 +28,7 @@ impl Encoding {
         special_tokens_mask: Vec<u32>,
         attention_mask: Vec<u32>,
         overflowing: Vec<Encoding>,
-        sequence_ranges: HashMap<usize, Range<usize>>
+        sequence_ranges: HashMap<usize, Range<usize>>,
     ) -> Self {
         Self {
             id,
@@ -39,7 +39,7 @@ impl Encoding {
             special_tokens_mask,
             attention_mask,
             overflowing,
-            sequence_ranges
+            sequence_ranges,
         }
     }
 
@@ -53,7 +53,7 @@ impl Encoding {
             special_tokens_mask: Vec::with_capacity(capacity),
             attention_mask: Vec::with_capacity(capacity),
             overflowing: Vec::new(),
-            sequence_ranges: HashMap::new()
+            sequence_ranges: HashMap::new(),
         }
     }
 }

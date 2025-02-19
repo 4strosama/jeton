@@ -25,10 +25,11 @@ fn check_parallel_available() -> bool {
 
 fn get_env_parallel() -> bool {
     match var(JETON_PARALLEL) {
-        Ok(content) => {
-            !matches!(content.to_ascii_lowercase().as_ref(), "off" | "false" | "disable" | "no" | "0")
-        }
-        Err(_) => false
+        Ok(content) => !matches!(
+            content.to_ascii_lowercase().as_ref(),
+            "off" | "false" | "disable" | "no" | "0"
+        ),
+        Err(_) => false,
     }
 }
 
@@ -109,7 +110,7 @@ where
     fn maybe_par_iter_mut_cond(&'data mut self, cond: bool) -> CondIterator<P, S>;
 }
 
-impl<'data, P, S, I: 'data + ?Sized> MaybeParallelRefMutIterator<'data, P, S>for I
+impl<'data, P, S, I: 'data + ?Sized> MaybeParallelRefMutIterator<'data, P, S> for I
 where
     &'data mut I: MaybeParallelIterator<P, S>,
     P: ParallelIterator,
@@ -158,7 +159,6 @@ where
         }
     }
 }
-
 
 pub trait MaybeParallelSlice<'data, T>
 where
