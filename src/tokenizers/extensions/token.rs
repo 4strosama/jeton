@@ -1,12 +1,6 @@
-use std::collections::{HashMap, HashSet};
 use std::hash::{Hash, Hasher};
 
-use lazy_static::lazy_static;
-use regex::Regex;
 use serde::{Deserialize, Serialize};
-
-
-
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TokenExtension {
@@ -75,47 +69,4 @@ pub struct TokenExtensionID {
     pub id: u32,
     #[serde(flatten)]
     pub token: TokenExtension,
-}
-
-lazy_static! {
-    static ref STARTS_WITH_WORD: Regex = Regex::new(r"^\w").unwrap();
-    static ref ENDS_WITH_WORD: Regex = Regex::new(r"\w$").unwrap();
-    static ref LEFTMOST_SPACE_AT_END: Regex = Regex::new(r"\s*$").unwrap();
-    static ref RIGHTMOST_SPACE_AT_START: Regex = Regex::new(r"^\s*").unwrap();
-}
-
-fn starts_with_word(sentence: &str) -> bool {
-    STARTS_WITH_WORD.is_match(sentence)
-}
-
-fn ends_with_word(sentence: &str) -> bool {
-    ENDS_WITH_WORD.is_match(sentence)
-}
-
-fn space_leftmost_at_end(sentence: &str) -> usize {
-    if let Some(target) = LEFTMOST_SPACE_AT_END.find(sentence) {
-        target.start()
-    } else {
-        sentence.len()
-    }
-}
-
-fn space_rightmost_at_start(sentence: &str) -> usize {
-    if let Some(target) = RIGHTMOST_SPACE_AT_START.find(sentence) {
-        target.end()
-    } else {
-        0
-    }
-}
-
-#[derive(Debug, Clone)]
-pub struct VocabExtension {}
-
-impl VocabExtension {}
-
-impl Serialize for VocabExtension {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-        where
-            S: serde::Serializer {
-    }
 }
