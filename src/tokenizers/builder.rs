@@ -10,16 +10,16 @@ pub struct TokenizerBuilder<M, N, PT, PP, D> {
     normalizer: Option<N>,
     pre_tokenizer: Option<PT>,
     post_processor: Option<PP>,
-    decoder: Option<D>
+    decoder: Option<D>,
 }
 
 impl<M, N, PT, PP, D> Default for TokenizerBuilder<M, N, PT, PP, D>
 where
     M: Model,
-    N: Normalizer, 
+    N: Normalizer,
     PT: PreTokenizer,
     PP: PostProcessor,
-    D: Decoder
+    D: Decoder,
 {
     fn default() -> Self {
         Self {}
