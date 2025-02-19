@@ -5,6 +5,9 @@ use lazy_static::lazy_static;
 use regex::Regex;
 use serde::{Deserialize, Serialize};
 
+
+
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TokenExtension {
     pub content: String,
@@ -67,6 +70,13 @@ impl Hash for TokenExtension {
     }
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct TokenExtensionID {
+    pub id: u32,
+    #[serde(flatten)]
+    pub token: TokenExtension,
+}
+
 lazy_static! {
     static ref STARTS_WITH_WORD: Regex = Regex::new(r"^\w").unwrap();
     static ref ENDS_WITH_WORD: Regex = Regex::new(r"\w$").unwrap();
@@ -100,3 +110,12 @@ fn space_rightmost_at_start(sentence: &str) -> usize {
 
 #[derive(Debug, Clone)]
 pub struct VocabExtension {}
+
+impl VocabExtension {}
+
+impl Serialize for VocabExtension {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+        where
+            S: serde::Serializer {
+    }
+}
